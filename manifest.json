@@ -4,7 +4,7 @@
     "manifest_version": 2,
     "description": "Pending description for reasons",
     "icons": {
-        "32": "Account_Dodger Logo_1.png",
-        "48": "Account_Dodger Logo_1-48.png"
+        "32": "icons/Account_Dodger Logo_1.png",
+        "48": "icons/Account_Dodger Logo_1-48.png"
     }
 }
