@@ -1,10 +1,16 @@
 {
     "name": "Account Dodger",
     "version": "0.0.0.1",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "description": "Pending description for reasons",
     "icons": {
         "32": "icons/Account_Dodger Logo_1.png",
         "48": "icons/Account_Dodger Logo_1-48.png"
-    }
+    },
+    "action": {
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "tabs"
+    ]
 }
