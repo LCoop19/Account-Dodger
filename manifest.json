@@ -1,16 +1,12 @@
 {
     "name": "Account Dodger",
     "version": "0.0.0.1",
-    "manifest_version": 3,
-    "description": "Pending description for reasons",
+    "manifest_version": 2,
+    "description": "A Chromium extension for reading Quora without logging into an account",
     "icons": {
+        "16": "icons/Account_Dodger Logo_1-16.png",
         "32": "icons/Account_Dodger Logo_1.png",
-        "48": "icons/Account_Dodger Logo_1-48.png"
-    },
-    "action": {
-        "default_popup": "index.html"
-    },
-    "permissions": [
-        "tabs"
-    ]
+        "48": "icons/Account_Dodger Logo_1-48.png",
+        "128": "icons/Account_Dodger Logo_1-128.png"
+    }
 }
