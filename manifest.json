@@ -12,6 +12,9 @@
     "action": {
         "default_popup": "index.html"
     },
+    "background": {
+        "service_worker": "main_code.js"
+      },
     "permissions": [
         "tabs"
     ]
