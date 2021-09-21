@@ -1,7 +1,28 @@
 //quora
-console.log('this message is to be seen on the console');
 
-let tab= getCurrentTab(); //TODO: do something with 'tab'
+const quoraUrlPart= 'quora';
+let savedQuoraUrl= '';
+var startListeningForUpdatesForCreatedTab= false;
+let currentCreatedTabId=-1;
+
+//Start listening for the 'New Tab event'
+chrome.tabs.onCreated.addListener((tab) => {
+
+  //This event gets invoked when a tab is created.
+  
+});
+
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  //This event gets invoked when ANY tab is updated.
+  //We can play with these events to implement the Quora behavior.
+
+});
+
+
+
+
+ //TODO: do something with 'tab'
 //if the current tab is 'Quora' (maybe checking its url) 
 //then do the action to skip the login prompt.
 
