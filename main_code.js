@@ -24,7 +24,7 @@ chrome.tabs.onCreated.addListener((tab) => {
   if(tab.pendingUrl== savedQuoraUrl)
   {
     console.log('This tab was created by the extension');
-    //I know this because if 'tab.pendingUrl' is not null or empty and
+    //I know this because 'tab.pendingUrl' is not null or empty and
     //equals the url I set up when I opened it in the onUpdated.addListener
 
     startListeningForUpdatesForCreatedTab= false;
