@@ -1,4 +1,5 @@
 const regex = new RegExp('quora\\.com\\/(?=\\S*[-])([a-zA-Z-]+)');
+let regexGoogleSearch = /https:\/\/www\.goo[a-zA-Z]le\.c[a-zA-Z]m\/search\?q=/i;
 //The above 'regex' variable is a Regular Expression pattern
 //what it does is that it can be used to check
 //whatever text is compared against this pattern so it matches it
@@ -15,6 +16,7 @@ let savedQuoraUrl= '';
 var startListeningForUpdatesForCreatedTab= false;
 let currentCreatedTabId=-1;
 let invokingTabId=-1;
+let tabWithGoogleSearch= -1;
 
 
 
@@ -43,6 +45,15 @@ chrome.tabs.onCreated.addListener((tab) => {
 
 //This listens for the 'Tab Updated' event.
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+
+  //TODO: organize this code so it doesn't become an impossible task to maintain it.
+  //TODO: document all changes explaining what the code does in general.
+
+  if(isThisTabGoogleSearch(tab.url))
+  {
+    tabWithGoogleSearch= tab.id;
+  }
+
   if(startListeningForUpdatesForCreatedTab
     && tabId== currentCreatedTabId 
     && changeInfo.status== 'complete'
@@ -60,8 +71,17 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
           url: savedQuoraUrl
         }
       ); //opens new tab...
-
-    chrome.tabs.remove(tabId); //...closes current
+    if(tabId != tabWithGoogleSearch)
+    {
+      console.log("Tab didn't contain google, closing")
+      chrome.tabs.remove(tabId); //...closes current (if not coming from google, because we lose the tab's history)
+    }
+    else
+    {
+      //If it comes from google search, lets go back to google search because we already opened a tab with a quora question page.
+      chrome.tabs.goBack(
+        tabId)
+    }
   }
 
 });
@@ -71,4 +91,8 @@ function isThisTabAQuoraQuestion(tabUrl)
   return regex.test(tabUrl); 
   //Returns true or false depending on if the 'tabUrl' parameter
   //passed here matches the Regular Expression pattern defined on line 1.
+};
+function isThisTabGoogleSearch(tabUrl)
+{
+  return regexGoogleSearch.test(tabUrl); 
 };
